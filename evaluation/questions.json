@@ -1,0 +1,14 @@
+[
+  {
+    "question": "What was the revenue in Q3?",
+    "expected_pages": []
+  },
+  {
+    "question": "What trend is shown in the revenue chart?",
+    "expected_pages": []
+  },
+  {
+    "question": "Compare Q2 and Q3 revenue.",
+    "expected_pages": []
+  }
+]

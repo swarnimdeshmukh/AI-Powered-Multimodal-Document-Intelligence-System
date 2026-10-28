@@ -1,0 +1,13 @@
+pymupdf
+pillow
+pdfplumber
+pandas
+numpy
+torch
+torchvision
+open_clip_torch
+chromadb
+streamlit
+sentence-transformers
+ddgs
+streamlit[pdf]

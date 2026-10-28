@@ -1,86 +1,102 @@
-# Multi-Modal RAG System — Local / No-API
+# IntelliRAG — AI-Powered Multimodal Document Intelligence
 
-A local, portfolio-grade Multi-Modal Retrieval-Augmented Generation system for PDFs containing **text, images/charts, and tables**.
+IntelliRAG is a multimodal Retrieval-Augmented Generation (RAG) system designed to enable intelligent document understanding through semantic retrieval, contextual question answering, and document analysis.
 
-## Architecture
+## Key Features
 
-PDF → extraction → text/images/tables → local multimodal embeddings → ChromaDB → multimodal retrieval → local vision-language model → answer + source pages.
+- **Multimodal document processing:** Extract and process PDF text, images, and tables.
+- **Context-aware question answering:** Retrieve relevant document content to generate grounded responses.
+- **Semantic search:** Use embeddings and vector similarity to retrieve relevant information.
+- **Document similarity and plagiarism analysis:** Compare document content to identify potential overlap.
+- **AI-generated text analysis:** Analyze text for characteristics associated with AI-generated content.
+- **Local model execution:** Integrate locally running vision-language models to reduce reliance on external APIs.
+- **Interactive interface:** Explore document intelligence features through Streamlit.
 
-This project intentionally uses **no OpenAI, Anthropic, Gemini, Claude API, or paid cloud inference**.
+## Technology Stack
 
-## Stack
-
-- Python 3.11
-- PyMuPDF
-- pdfplumber
-- Pillow
-- Pandas
-- PyTorch
-- OpenCLIP
-- ChromaDB
+- Python
 - Streamlit
-- Local vision-language model (added/configured in the generation phase)
+- CLIP / OpenCLIP
+- ChromaDB
+- Qwen vision-language models
+- PDF, image, and table processing libraries
 
-## Project structure
+## Project Structure
 
-```text
-multimodal-rag-system/
-├── data/
-│   └── annual_report.pdf
-├── storage/
-│   ├── chroma/
-│   └── extracted_images/
-├── src/
-│   ├── __init__.py
-│   ├── config.py
-│   ├── pipeline.py
-│   ├── ingestion/
-│   │   ├── __init__.py
-│   │   ├── pdf_extractor.py
-│   │   ├── image_processor.py
-│   │   └── table_processor.py
-│   ├── embeddings/
-│   │   ├── __init__.py
-│   │   └── multimodal_embedder.py
-│   ├── retrieval/
-│   │   ├── __init__.py
-│   │   └── vector_store.py
-│   └── generation/
-│       ├── __init__.py
-│       └── local_vlm.py
-├── tests/
-│   ├── __init__.py
-│   ├── test_extraction.py
-│   ├── test_retrieval.py
-│   └── test_pipeline.py
-├── evaluation/
-│   ├── questions.json
-│   └── evaluate.py
-├── app.py
-├── test_extraction.py
-├── requirements.txt
-├── .gitignore
-└── README.md
-```
+- `app.py` — Streamlit application
+- `index_pdf.py` — PDF indexing entry point
+- `src/embeddings/` — Multimodal embedding components
+- `src/ingestion/` — PDF, image, and table processing
+- `src/retrieval/` — Retrieval and vector-store components
+- `src/generation/` — Local vision-language model integration
+- `src/similarity/` — Similarity, plagiarism, and AI-text analysis
+- `evaluation/` — Evaluation scripts and questions
+- `tests/` — Automated tests
+- `requirements.txt` — Python dependencies
 
-## Setup
+## Getting Started
+
+### Prerequisites
+
+- Python 3.10 or a compatible version supported by the dependencies
+- pip
+- A compatible local model setup for features requiring Qwen
+- Sufficient memory and storage for the selected models
+
+### Installation
+
+Clone the repository:
 
 ```bash
-conda create -n multimodal-rag python=3.11 -y
-conda activate multimodal-rag
-pip install -r requirements.txt
+git clone https://github.com/swarnimdeshmukh/AI-Powered-Multimodal-Document-Intelligence-System.git
+cd AI-Powered-Multimodal-Document-Intelligence-System
 ```
 
-Put a PDF containing text, charts/images, and tables into `data/` as `annual_report.pdf`.
-
-Then run:
+Create and activate a virtual environment:
 
 ```bash
-python test_extraction.py
+python3 -m venv .venv
+source .venv/bin/activate
 ```
 
-We will implement the remaining stages incrementally and test each stage before moving forward.
+Install dependencies:
 
-## No-API rule
+```bash
+python -m pip install -r requirements.txt
+```
 
-Do not add API keys or cloud inference. Models used for embeddings and final generation are intended to run locally.
+Run the application:
+
+```bash
+streamlit run app.py
+```
+
+Some features may require additional local model downloads or configuration.
+
+## Privacy and Model Execution
+
+IntelliRAG is designed to support local model execution. Actual data handling depends on the configured components and any optional web-search functionality. Review model and component configurations before using sensitive documents.
+
+## Evaluation
+
+The `evaluation/` and `tests/` directories contain evaluation and testing resources. Run tests using:
+
+```bash
+python -m pytest tests/
+```
+
+## Limitations
+
+- Plagiarism similarity is an indicator of textual overlap, not a definitive determination of plagiarism.
+- AI-generated text detection is probabilistic and can produce false positives or false negatives.
+- Results depend on document quality, model selection, retrieval configuration, and available computing resources.
+
+## Author
+
+**Swarnim Deshmukh**
+
+GitHub: [@swarnimdeshmukh](https://github.com/swarnimdeshmukh)
+
+---
+
+*IntelliRAG — Multimodal Retrieval-Augmented Generation for Document Intelligence.*
